@@ -19,4 +19,41 @@ SELECT application_id,
        RANK() OVER (ORDER BY risk_score DESC) AS risk_rank
 FROM loan_applications;
 
+SELECT 
+    application_id,
+    customer_name,
+    loan_type,
+    risk_score,
+    ROW_NUMBER() OVER (
+        PARTITION BY loan_type
+        ORDER BY risk_score DESC
+    ) AS row_num
+FROM loan_applications;
+
+SELECT application_id,
+       customer_name,
+       loan_amount,
+       risk_score,
+       SUM(loan_amount) OVER (
+           ORDER BY risk_score DESC
+       ) AS running_total
+FROM loan_applications;
+
+SELECT application_id,
+       customer_name,
+       risk_score,
+       LAG(risk_score) OVER 
+       (ORDER BY risk_score DESC) 
+       AS previous_risk_score
+FROM loan_applications;
+
+SELECT application_id,
+       customer_name,
+       risk_score,
+       LEAD(risk_score) OVER 
+       (ORDER BY risk_score DESC) 
+       AS next_risk_score
+FROM loan_applications;
+
+
 

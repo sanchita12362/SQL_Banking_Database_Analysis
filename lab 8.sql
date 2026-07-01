@@ -47,7 +47,9 @@ VALUES
 (310, 202, 102, '2025-05-20', 11000.00, 'Payment');
 
 SELECT * FROM Transactions_2;
-  
+
+Select avg(Amount) from Transactions_2;
+
   SELECT 
   c.CustomerID,
   CONCAT(c. FirstName, ' ', c.LastName) AS CustomerName,
@@ -93,15 +95,15 @@ SELECT * FROM Transactions_2;
   )
   ORDER BY t.Amount DESC;
   
-  UPDATE Transactions
+UPDATE Transactions_2
 SET Amount = 75000.00
 WHERE TransactionID = 301;
 
-UPDATE Transactions
+UPDATE Transactions_2
 SET Amount = 62000.00
 WHERE TransactionID = 307;
 
-UPDATE Transactions
+UPDATE Transactions_2
 SET Amount = 85000.00
 WHERE TransactionID = 309;
 
@@ -118,3 +120,7 @@ INNER JOIN Transactions_2 t
 WHERE t.TransactionType = 'Deposit'
   AND t.Amount > 50000
 ORDER BY t.Amount DESC;
+
+Select avg(Amount) from Transactions_2;
+
+select * from Transactions;
